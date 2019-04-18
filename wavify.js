@@ -24,7 +24,9 @@ function wavify(wave_element, options) {
       // Color
       color: "rgba(255,255,255, 0.20)",
       // Factor limiter
-      factorLimiter: 1
+      factorLimiter: 1,
+      // Invert the wave
+      inverted: false,
     },
     options
   );
@@ -81,7 +83,6 @@ function wavify(wave_element, options) {
       points[1].y;
 
     var prevCp = cp0;
-    var inverted = -1;
 
     for (var i = 1; i < points.length - 1; i++) {
       var cpLength = Math.sqrt(prevCp.x * prevCp.x + prevCp.y * prevCp.y);
@@ -104,11 +105,15 @@ function wavify(wave_element, options) {
         " " +
         points[i + 1].y;
       prevCp = cp1;
-      inverted = -inverted;
     }
 
-    SVGString += " L " + width + " " + height;
-    SVGString += " L 0 " + height + " Z";
+    if(settings.inverted){
+      SVGString += " L " + width + " 0";
+      SVGString += " L 0 0 Z";
+    } else {
+      SVGString += " L " + width + " " + height;
+      SVGString += " L 0 " + height + " Z";
+    }
     return SVGString;
   }
 
