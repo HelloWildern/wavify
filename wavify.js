@@ -22,7 +22,9 @@ function wavify(wave_element, options) {
       // Total number of articulation in wave
       bones: 3,
       // Color
-      color: "rgba(255,255,255, 0.20)"
+      color: "rgba(255,255,255, 0.20)",
+      // Factor limiter
+      factorLimiter: 1
     },
     options
   );
@@ -122,7 +124,7 @@ function wavify(wave_element, options) {
 
       totalTime += elapsed;
 
-      var factor = totalTime * Math.PI;
+      var factor = totalTime * Math.PI / settings.factorLimiter;
       tweenMaxInstance = TweenMax.to(wave, settings.speed, {
         attr: {
           d: drawPath(drawPoints(factor))

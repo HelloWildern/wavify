@@ -49,7 +49,8 @@ var myWave = wavify( document.querySelect('#myId'), {
   bones: 3,
   amplitude: 40,
   color: 'rgba(150, 97, 255, .8)',
-  speed: .25
+  speed: .25,
+  factorLimiter: 1
 })
 
 // For jQuery
@@ -58,7 +59,8 @@ var myWave = $('#myID').wavify({
   bones: 3,
   amplitude: 40,
   color: 'rgba(150, 97, 255, .8)',
-  speed: .25
+  speed: .25,
+  factorLimiter: 1
 });
 ```
 
@@ -72,6 +74,7 @@ var myWave = $('#myID').wavify({
 | speed        | Animation speed                                                             | 0.15                    |
 | height       | Height of the wave from crest to trough                                     | 200                     |
 | amplitude    | Vertical distance wave travels                                              | 100                     |
+| factorLimiter| Divides the factor by this value. Higher values will slow down the wave without dampening the amplitude | 1 |
 
 ## Available Functions
 
